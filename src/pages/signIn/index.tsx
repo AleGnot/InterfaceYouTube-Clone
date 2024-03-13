@@ -1,7 +1,11 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../contexts/userContext";
 import { useNavigate } from "react-router-dom";
-import { BodyDiv, ButtonsContainer, ContainerMain, Disclaymer, FormContainer, Inputs, LogButton, LogoContainer, LogoG, TitleInput } from "./style";
+import { BodyDiv, ButtonsContainer, CheckBox, ContainerMain, Disclaymer, FormContainer, Inputs, Invalidation, LogButton, LogoContainer, LogoG, TitleInput } from "./style";
+
+/* Images */
+import CheckBoxIcon from "../../assets/Login-Signin/checkbox.png";
+import UncheckedBox from "../../assets/Login-Signin/unchecked.png";
 
 function SignIn() {
     const { handleSignIn } = useContext(UserContext);
@@ -10,7 +14,25 @@ function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
+
     const [criado, setCriado] = useState(false);
+
+    const [showPassword, setShowPassword] = useState(false);
+
+    const handlePassword = () => {
+        setShowPassword(!showPassword)
+    }
+
+    /* Validations */
+    const [emptyName, setEmptyName] = useState(false);
+    const [emptyEmail, setEmptyEmail] = useState(false);
+    const [emptyPassword, setEmptyPassword] = useState(false);
+
+    const resetValidation = () => {
+        setEmptyEmail(false);
+        setEmptyPassword(false);
+        setEmptyName(false);
+    }
 
     const switchPages = (name: string, email: string, senha: string) => {
         handleSignIn(name, email, senha).then(() => {
@@ -51,21 +73,49 @@ function SignIn() {
                             <Inputs>
                                 <input type='text' value={name} onChange={(e) => setName(e.target.value)} />
                             </Inputs>
+                            <Invalidation valid={emptyName} > Por favor digite um nome! </Invalidation>
 
                             <TitleInput> Email </TitleInput>
                             <Inputs>
                                 <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
                             </Inputs>
+                            <Invalidation valid={emptyEmail} > Por favor digite um email válido! </Invalidation>
+
 
                             <TitleInput> Senha </TitleInput>
                             <Inputs>
-                                <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
+                                <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} />
                             </Inputs>
+                            <Invalidation valid={emptyPassword} > Por favor digite uma senha válida! </Invalidation>
+
+                            <CheckBox onClick={handlePassword}>
+                                <img alt="" src={showPassword ? CheckBoxIcon : UncheckedBox} />
+                                <span> Mostrar senha </span>
+                            </CheckBox>
 
                             <ButtonsContainer>
                                 <span onClick={() => navigate('/login')}> Já possuo uma conta </span>
 
-                                <LogButton onClick={() => switchPages(name, email, password)}> Criar conta </LogButton>
+                                <LogButton
+                                    onClick={() => {
+                                        if (email.trim() === '') {
+                                            setEmptyEmail(true)
+                                        } else if (!email.includes('@')) {
+                                            setEmptyEmail(true)
+                                        }
+                                        if (password.trim() === '') {
+                                            setEmptyPassword(true)
+                                        }
+                                        if (name.trim() === '') {
+                                            setEmptyName(true)
+                                        }
+                                        else if (email.trim() !== '' && password.trim() !== '' && email.includes('@')) {
+                                            resetValidation();
+                                            switchPages(name, email, password);
+                                        }
+                                    }}>
+                                    Criar conta
+                                </LogButton>
                             </ButtonsContainer>
                         </>
                     }

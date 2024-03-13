@@ -76,6 +76,17 @@ export const TitleInput = styled.span`
   color: #4a4a4a;
 `;
 
+export const Invalidation = styled.span<{ valid: boolean }>`
+  display: ${({ valid }) => (valid ? "flex" : "none")};
+  background-color: #fff;
+  margin-top: -15px;
+  margin-right: 175px;
+  height: 1.2rem;
+  padding: 1px 4px;
+  z-index: 2;
+  color: #f23535;
+`;
+
 export const Inputs = styled.div`
   width: 90%;
   height: 28px;
@@ -120,5 +131,28 @@ export const LogButton = styled.button<{ newAcc: boolean }>`
   &:hover {
     background-color: ${({ newAcc }) => (newAcc ? "#99BFF2" : "#0d65d9")};
     color: #fff;
+  }
+`;
+
+export const CheckBox = styled.div`
+  height: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 3px 25px 3px 0;
+
+  span {
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+
+  img {
+    width: 25px;
   }
 `;

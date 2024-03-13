@@ -61,7 +61,7 @@ export const FormContainer = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   row-gap: 15px;
 `;
@@ -92,6 +92,17 @@ export const Inputs = styled.div`
   input:focus {
     outline: none;
   }
+`;
+
+export const Invalidation = styled.span<{ valid: boolean }>`
+  display: ${({ valid }) => (valid ? "flex" : "none")};
+  background-color: #fff;
+  margin-top: -15px;
+  margin-right: 175px;
+  height: 1.2rem;
+  padding: 1px 4px;
+  z-index: 2;
+  color: #f23535;
 `;
 
 export const ButtonsContainer = styled.div`
@@ -134,5 +145,32 @@ export const LogButton = styled.button`
   &:hover {
     background-color: #0d65d9;
     color: #fff;
+  }
+`;
+
+export const CheckBox = styled.div`
+  height: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0 275px 0 0;
+
+  span {
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+
+    &:hover {
+      background-color: none;
+    }
+  }
+
+  img {
+    width: 25px;
   }
 `;
