@@ -11,6 +11,7 @@ import VideoComponent from "../../components/videoComponent";
 
 /* Images */
 import Short from "../../assets/Feed/ShortColorized.png";
+import { useNavigate } from "react-router-dom";
 
 
 /* Just my silly memes XD */
@@ -94,6 +95,8 @@ function FeedComponent() {
   const { isMenuOpen } = useContext(MenuContext);
   const { categoryId } = useContext(CategoryContext);
 
+  const navigate = useNavigate()
+
   const [bigSize, setBigSize] = useState(true);
   const [video, setVideo] = useState<Videos[]>([]);
 
@@ -115,8 +118,8 @@ function FeedComponent() {
   }
 
   /* Feed Splits */
-  const topVideo = video.slice(0, 6);
-  const bottomVideos = video.slice(6);
+  const topVideo = video.slice(0, 12);
+  const bottomVideos = video.slice(12);
 
   /* Formatting Stuff */
   function formatViews(num: number): string {
@@ -192,7 +195,7 @@ function FeedComponent() {
           }
 
           <ShortsContainer checkopen={bigSize}>
-            <div style={{ width: '100%' }}>
+            <div style={{ width: '100%' }} onClick={() => navigate('/shorts')}>
               <ShortsIcon alt='' src={Short} />
               <Shortstxt> Shorts</Shortstxt>
             </div>

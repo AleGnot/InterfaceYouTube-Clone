@@ -1,7 +1,11 @@
 import { MenuContext } from "../../contexts/menuContext";
 import { UserContext } from "../../contexts/userContext";
-import { useContext } from "react";
+import { DropDownContext } from "../../contexts/dropDownContext";
+import { SearchContext } from "../../contexts/searchContext";
+import { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+/* Components */
 import {
     Container,
     LogoContainer,
@@ -25,7 +29,7 @@ import VideoIcon from "../../assets/Header/video.png";
 import NotifyIcon from "../../assets/Header/sino.png";
 import Guest from "../../assets/Header/circle-user.png";
 import ThreeDots from "../../assets/Header/dots.png";
-import { DropDownContext } from "../../contexts/dropDownContext";
+import Close from "../../assets/Header/cross.png";
 
 function Header() {
     const { isMenuOpen, setIsMenuOpen } = useContext(MenuContext);
@@ -35,6 +39,20 @@ function Header() {
     const characterPic = user.email[0];
 
     const { isDropOpen, setIsDropOpen } = useContext(DropDownContext);
+
+    /* Search Relateds */
+    const { setSearchQ } = useContext(SearchContext);
+
+    const [input, setInput] = useState('');
+    const refInput = useRef<HTMLInputElement>(null);
+
+    function handleInput(inputValue: string) {
+        setInput(inputValue)
+    }
+
+    function handleClear() {
+        setInput('')
+    }
 
     return (
         <Container>
@@ -53,10 +71,34 @@ function Header() {
 
             <SearchContainer>
                 <SearchInputContainer>
-                    <SearchInput placeholder="Pesquisar" />
+                    <SearchInput
+                        ref={refInput}
+                        value={input}
+                        placeholder='Pesquisar'
+                        onChange={(e) => { handleInput(e.target.value) }}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                                setSearchQ(input)
+                                navigate('/search')
+                            }
+                        }}
+                    />
+                    {input.trim() !== '' && (
+                        <ButtonContainer margin="0" onClick={() => handleClear()}>
+                            <ButtonIcon alt="" src={Close} margin="10px 0" />
+                        </ButtonContainer>
+                    )}
                 </SearchInputContainer>
 
-                <SearchButton>
+                <SearchButton
+                    onClick={() => {
+                        if (input.trim() === '') {
+                            return alert('Digite uma palavra para pesquisar')
+                        }
+                        setSearchQ(input);
+                        navigate('/search')
+                    }}
+                >
                     <ButtonIcon alt="" src={SearchIcon} margin="8px 0" />
                     <span> Pesquisar </span>
                 </SearchButton>

@@ -24,7 +24,7 @@ export const TumbNailImg = styled.img<{ openmenucheck: boolean }>`
 export const DescriptContainer = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
 `;
 
 export const ChannelImg = styled.div`
