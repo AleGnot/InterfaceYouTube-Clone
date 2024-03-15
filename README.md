@@ -1,30 +1,67 @@
-# React + TypeScript + Vite
+# YouTube Interface Clone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=49AA26&labelColor=000000">
 
-Currently, two official plugins are available:
+# Sobre o Projeto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Esse projeto imita a interface do YouTube assim como algumas de suas funcionalidades como a pesquisa de vídeos, pesquisa por categorias e, quando logado, o upload de vídeos.
 
-## Expanding the ESLint configuration
+Essa aplicação consome a API de dados do YouTube e também possuí uma API própria responsável por realizar os logins assim como criá-los.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Login
 
-- Configure the top-level `parserOptions` property like this:
+Quando logado na aplicação, o usuário será capaz de fazer o upload de vídeos ao informar o título, descrição e thumbnail do mesmo (em desenvolvimento)
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+- [Clique aqui para acessar o projeto](https://interfaceyt.netlify.app)
+
+## Layout Web
+
+![Web 1](/.github/Preview1.png)
+
+![Web 2](/.github/Preview2.png)
+
+## Tecnologias
+
+### Front End
+
+- React
+- TypeScipt
+- CSS
+- HTML
+
+### Back End
+
+- TypeScript
+- Node.JS
+- Prisma ORM
+- PostgreSQL
+
+> [Repositório com a API Back End](https://github.com/AleGnot/Yt-prismaAPI)
+
+### Bibliotecas
+
+- Styled Components
+- Axios
+- Node
+- DotEnv
+- React Router Dom
+
+# Clonando o Projeto
+
+Requisitos: npm / yarn
+
+```bash
+git clone https://github.com/AleGnot/InterfaceYouTube-Clone
+
+# Instalar dependências
+npm install
+
+# Rodar o Projeto
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+# Autor
+
+Alessandro Garcia :v
+
+https://github.com/AleGnot
