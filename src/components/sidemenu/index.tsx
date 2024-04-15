@@ -47,7 +47,7 @@ function Menu() {
 
             {login ?
                 <FirstSection openmenucheck={isMenuOpen}>                                           {/* second section  with login */}
-                    <MenuItem openmenucheck={isMenuOpen}>
+                    <MenuItem openmenucheck={isMenuOpen} onClick={() => navigate('/channel')}>
                         <ButtonIcon alt="" src={Library} />
                         <span>Biblioteca</span>
                     </MenuItem>
