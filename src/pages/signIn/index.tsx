@@ -81,7 +81,6 @@ function SignIn() {
                             </Inputs>
                             <Invalidation valid={emptyEmail} > Por favor digite um email válido! </Invalidation>
 
-
                             <TitleInput> Senha </TitleInput>
                             <Inputs>
                                 <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} />
